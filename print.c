@@ -13,13 +13,13 @@ static char src_name[MAX_FILE_NAME_LENGTH];
 static char todays_date[DATE_STRING_LENGTH];
 
 const char* const SYMBOL_STRINGS[] = { "<no token>", "<IDENTIFIER>", "<NUMBER>",
-		"<STRING>", "^", "*", "(", ")", "-", "+", "=", "[", "]", ":", ";", "<",
-		">", ",", ".", "/", ":=", "<=", ">=", "<>", "..", "<END OF FILE>",
-		"<ERROR>", "AND", "ARRAY", "BEGIN", "CASE", "CONST", "DIV", "DO",
-		"DOWNTO", "ELSE", "END", "FILE", "FOR", "FUNCTION", "GOTO", "IF", "IN",
-		"LABEL", "MOD", "NIL", "NOT", "OF", "OR", "PACKED", "PROCEDURE",
-		"PROGRAM", "RECORD", "REPEAT", "SET", "THEN", "TO", "TYPE", "UNTIL",
-		"VAR", "WHILE", "WITH", };
+		"<STRING>", "^\t", "*\t", "(\t", ")\t", "-\t", "+\t", "=\t", "[\t", "]\t", ":\t", ";\t", "<\t",
+		">\t", ",\t", ".\t", "/\t", ":=\t", "<=\t", ">=\t", "<>\t", "..\t", "<END OF FILE>",
+		"<ERROR>", "AND\t", "ARRAY", "BEGIN", "CASE\t", "CONST", "DIV\t", "DO\t",
+		"DOWNTO", "ELSE\t", "END\t", "FILE\t", "FOR\t", "FUNCTION", "GOTO\t", "IF\t", "IN\t",
+		"LABEL", "MOD\t", "NIL\t", "NOT\t", "OF\t", "OR\t", "PACKED", "PROCEDURE",
+		"PROGRAM", "RECORD", "REPEAT", "SET\t", "THEN\t", "TO\t", "TYPE\t", "UNTIL",
+		"VAR\t", "WHILE", "WITH\t", };
 
 static void print_page_header(char source_name[], char date[]);
 
