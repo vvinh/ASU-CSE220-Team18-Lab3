@@ -40,6 +40,7 @@ void print_line(char line[], char source_name_to_print[], char date_to_print[]) 
 		*save_chp = '\0';
 	}
 	printf("%s", line);
+	fflush(stdout);
 	if (save_chp) {
 		*save_chp = save_ch;
 	}
@@ -53,8 +54,15 @@ static void print_page_header(char source_name[], char date[]) {
 }
 
 void print_token(Token *token) {
-	//`Missing code goes here
+
+	/*/`Missing code goes here */
+
 	char print_buffer[MAX_SOURCE_LINE_LENGTH + 9];
+
+
+
+
+
 
 	if (token->type == INTEGER_LIT) {
 
@@ -63,29 +71,25 @@ void print_token(Token *token) {
 		print_line(print_buffer, src_name, todays_date);
 
 	} else if (token->type == REAL_LIT) {
-		printf(">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
-				token->token_string);
+
 
 		sprintf(print_buffer, ">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
 				token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
+	} else if (token->code == NO_TOKEN) {
+
+		sprintf(print_buffer, "%s\t    %s\n", "", token->token_string);
+		print_line(print_buffer, src_name, todays_date);
+
 	} else {
 
-		if (token->code == NO_TOKEN) {
+		sprintf(print_buffer, ">> %s\t    %s\n",
+				SYMBOL_STRINGS[token->code], token->token_string);
+		print_line(print_buffer, src_name, todays_date);
 
-			sprintf(print_buffer, "%s\t    %s\n", "", token->token_string);
-			print_line(print_buffer, src_name, todays_date);
-
-		} else {
-
-			sprintf(print_buffer, ">> %s\t    %s\n",
-					SYMBOL_STRINGS[token->code], token->token_string);
-			print_line(print_buffer, src_name, todays_date);
-
-		}
 	}
-	fflush(stdout);
+
 }
 
 void init_scanner2(char source_name[], char date[]) {

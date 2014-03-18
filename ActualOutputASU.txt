@@ -1,0 +1,251 @@
+Page    1  NEWTON.PAS  Tue Mar 18 01:43:15 2014
+
+
+   1: PROGRAM newton (input, output);
+	    
+	    
+>> (	    (
+	    
+>> ,	    ,
+	    
+>> )	    )
+>> ;	    ;
+	    
+   2: 
+	    
+   3: CONST
+	    
+	    
+   4:     epsilon = 1e-6;
+	    
+>> =	    =
+	    
+>> ;	    ;
+	    
+   5: 
+	    
+   6: VAR
+	    
+	    
+   7:     number, root, sqroot : real;
+	    
+>> ,	    ,
+	    
+>> ,	    ,
+	    
+>> :	    :
+	    
+>> ;	    ;
+	    
+   8: 
+	    
+   9: BEGIN
+	    
+	    
+  10:     REPEAT
+	    
+	    
+  11: 	writeln;
+	    
+>> ;	    ;
+	    
+  12: 	write('Enter new number (0 to quit): ');
+	    
+Page    2  NEWTON.PAS  Tue Mar 18 01:43:15 2014
+
+
+>> (	    (
+>> <STRING>	    Enter new number (0 to quit): 
+>> )	    )
+>> ;	    ;
+	    
+  13: 	read(number);
+	    
+>> (	    (
+	    
+>> )	    )
+>> ;	    ;
+	    
+  14: 
+	    
+  15: 	IF number = 0 THEN BEGIN
+	    
+	    
+>> =	    =
+	    
+	    
+	    
+	    
+  16: 	    writeln(number:12:6, 0.0:12:6);
+	    
+>> (	    (
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> ,	    ,
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> )	    )
+>> ;	    ;
+	    
+  17: 	END
+	    
+	    
+  18: 	ELSE IF number < 0 THEN BEGIN
+	    
+	    
+	    
+>> <	    <
+	    
+	    
+	    
+Page    3  NEWTON.PAS  Tue Mar 18 01:43:15 2014
+
+
+	    
+  19: 	    writeln('*** ERROR:  number < 0');
+	    
+>> (	    (
+>> <STRING>	    *** ERROR:  number < 0
+>> )	    )
+>> ;	    ;
+	    
+  20: 	END
+	    
+	    
+  21: 	ELSE BEGIN
+	    
+	    
+	    
+  22: 	    sqroot := sqrt(number);
+	    
+>> :	    :
+>> =	    =
+	    
+>> (	    (
+	    
+>> )	    )
+>> ;	    ;
+	    
+  23: 	    writeln(number:12:6, sqroot:12:6);
+	    
+>> (	    (
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> ,	    ,
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> )	    )
+>> ;	    ;
+	    
+  24: 	    writeln;
+	    
+>> ;	    ;
+	    
+  25: 
+	    
+  26: 	    root := 1;
+	    
+Page    4  NEWTON.PAS  Tue Mar 18 01:43:15 2014
+
+
+>> :	    :
+>> =	    =
+	    
+>> ;	    ;
+	    
+  27: 	    REPEAT
+	    
+	    
+  28: 		root := (number/root + root)/2;
+	    
+>> :	    :
+>> =	    =
+>> (	    (
+	    
+>> /	    /
+	    
+>> +	    +
+	    
+>> )	    )
+>> /	    /
+	    
+>> ;	    ;
+	    
+  29: 		writeln(root:24:6,
+	    
+>> (	    (
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> ,	    ,
+	    
+  30: 			100*abs(root - sqroot)/sqroot:12:2,
+	    
+>> -	    -
+	    
+>> )	    )
+>> /	    /
+	    
+>> :	    :
+	    
+>> :	    :
+	    
+>> ,	    ,
+	    
+  31: 			'%')
+>> <STRING>	    %
+>> )	    )
+	    
+Page    5  NEWTON.PAS  Tue Mar 18 01:43:15 2014
+
+
+  32: 	    UNTIL abs(number/sqr(root) - 1) < epsilon;
+	    
+	    
+>> (	    (
+	    
+>> /	    /
+	    
+>> (	    (
+	    
+>> )	    )
+>> -	    -
+	    
+>> )	    )
+>> <	    <
+	    
+>> ;	    ;
+	    
+  33: 	END
+	    
+	    
+  34:     UNTIL number = 0
+	    
+	    
+>> =	    =
+	    
+>> )	    )
+>> -	    -
+	    
+>> )	    )
+>> <	    <
+	    
+>> ;	    ;
+	    
+  35: END.
+	    
+>> .	    .

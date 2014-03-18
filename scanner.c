@@ -53,7 +53,7 @@ typedef enum {
 static FILE *src_file;
 static char src_name[MAX_FILE_NAME_LENGTH];
 static char todays_date[DATE_STRING_LENGTH];
-//static CharCode char_table[256];  // The character table
+static CharCode char_table[256];
 
 typedef struct {
 	char *string;
@@ -61,20 +61,20 @@ typedef struct {
 } RwStruct;
 
 const RwStruct rw_table[9][10] = { { { "do", DO }, { "if", IF }, { "in", IN }, {
-		"of", OF }, { "or", OR }, { "to", TO }, { NULL, 0 } }, //Reserved words of size 2
+		"of", OF }, { "or", OR }, { "to", TO }, { NULL, 0 } }, /*/Reserved words of size 2 */
 		{ { "and", AND }, { "div", DIV }, { "end", END }, { "for", FOR }, {
 				"mod", MOD }, { "nil", NIL }, { "not", NOT }, { "set", SET }, {
-				"var", VAR }, { NULL, 0 } }, //Reserved words of size 3
+				"var", VAR }, { NULL, 0 } }, /*/Reserved words of size 3 */
 		{ { "case", CASE }, { "else", ELSE }, { "file", FFILE },
 				{ "goto", GOTO }, { "then", THEN }, { "type", TYPE }, { "with",
-						WITH }, { NULL, 0 } }, //Reserved words of size 4
+						WITH }, { NULL, 0 } }, /*/Reserved words of size 4 */
 		{ { "array", ARRAY }, { "begin", BEGIN }, { "const", CONST }, { "label",
-				LABEL }, { "until", UNTIL }, { "while", WHILE }, { NULL, 0 } }, //Reserved words of size 5
+				LABEL }, { "until", UNTIL }, { "while", WHILE }, { NULL, 0 } }, /*/Reserved words of size 5 */
 		{ { "downto", DOWNTO }, { "packed", PACKED }, { "record", RECORD }, {
-				"repeat", REPEAT }, { NULL, 0 } },  // Reserved words of size 6
-		{ { "program", PROGRAM }, { NULL, 0 } }, // Reserved words of size 7
-		{ { "function", FUNCTION }, { NULL, 0 } }, // Reserved words of size 8
-		{ { "procedure", PROCEDURE }, { NULL, 0 } }  // Reserved words of size 9
+				"repeat", REPEAT }, { NULL, 0 } },  /*/ Reserved words of size 6 */
+		{ { "program", PROGRAM }, { NULL, 0 } }, /*/ Reserved words of size 7 */
+		{ { "function", FUNCTION }, { NULL, 0 } }, /*/ Reserved words of size 8 */
+		{ { "procedure", PROCEDURE }, { NULL, 0 } }  /*/ Reserved words of size 9 */
 };
 
 void init_scanner(FILE *source_file, char source_name[], char date[]) {
@@ -91,7 +91,7 @@ void init_scanner(FILE *source_file, char source_name[], char date[]) {
 
 BOOLEAN get_source_line(char source_buffer[]) {
 	char print_buffer[MAX_SOURCE_LINE_LENGTH + 9];
-	//    char source_buffer[MAX_SOURCE_LINE_LENGTH];  //I've moved this to a function parameter.  Why did I do that?
+
 	static int line_number = 0;
 
 	if (fgets(source_buffer, MAX_SOURCE_LINE_LENGTH, src_file) != NULL) {
@@ -109,32 +109,32 @@ BOOLEAN get_source_line(char source_buffer[]) {
 
 Token * get_token() {
 
-	char ch; //This can be the current character you are examining during scanning.
-	char token_string[MAX_TOKEN_STRING_LENGTH]; //Store your token here as you build it.
+	char ch; /*/This can be the current character you are examining during scanning. */
+	char token_string[MAX_TOKEN_STRING_LENGTH]; /*Store your token here as you build it. */
 
 	Token *token2 = malloc(sizeof(Token));
 
-	//???;//I am missing the most important variable in the function, what is it?  Hint: what should I return?
+
 
 	ch = get_char(token_string);
 	char comp = '\'';
 
-	//1.  Skip past all of the blanks
-	//2.  figure out which case you are dealing with LETTER, DIGIT, QUOTE, EOF, or special, by examining ch
-	//decides to get_word()(if it is a letter), get_number()(if it is a number), get_string()(if it is a quote ‘), if it is the end of the file,
-	//or else it must have a special so it can get_special().
+	/*/1.  Skip past all of the blanks */
+	/*/2.  figure out which case you are dealing with LETTER, DIGIT, QUOTE, EOF, or special, by examining ch */
+	/*/decides to get_word()(if it is a letter), get_number()(if it is a number), get_string()(if it is a quote ‘), if it is the end of the file, */
+	/*/or else it must have a special so it can get_special(). */
 
-	// isalpha does not work with lower case
-	if ((isalpha(toupper(ch)) == 1)) {	//1=true
+	/*/ isalpha does not work with lower case */
+	if ((isalpha(toupper(ch)) == 1)) {	/*1=true */
 
-		token2 = get_word(token_string, token2);  //(if it is a LETTER)
+		token2 = get_word(token_string, token2);  /*/(if it is a LETTER) */
 	} else if (isdigit(ch) == 1) {
 
-		token2 = get_number(token_string, token2); //(if it is a DIGIT)
+		token2 = get_number(token_string, token2); /*/(if it is a DIGIT) */
 
 	} else if (ch == comp) {
 
-		token2 = get_string(token_string, token2); //(if it is a quote ‘)
+		token2 = get_string(token_string, token2); /*/(if it is a quote ‘) */
 
 	} else if (ch == EOF) {
 
@@ -145,16 +145,16 @@ Token * get_token() {
 		token2->type = STRING_LIT;
 		token2->nextptr = NULL;
 
-		strcpy(token2->token_string, " "); //copy source_buffer into tmp_buffer
+		strcpy(token2->token_string, " "); /*/copy source_buffer into tmp_buffer */
 
 		token2->code = NO_TOKEN;
 
 	} else {
 
-		token2 = get_special(token_string, token2);   // Special character
+		token2 = get_special(token_string, token2);   /*/ Special character */
 	}
 
-	return token2; //???;//What should be returned here?
+	return token2;
 }
 
 static Token *get_special(char token_string[], Token *token2) {
@@ -167,11 +167,11 @@ static Token *get_special(char token_string[], Token *token2) {
 	token2->type = STRING_LIT;
 	token2->nextptr = NULL;
 
-	//The fifth through the twenty fifth elements are all the special characters get_special() looks for
+	/*/The fifth through the twenty fifth elements are all the special characters get_special() looks for */
 	for (i = 4; i < 25; ++i) {
 
 		if (strcmp(SYMBOL_STRINGS2[i], &token_string[0]) == 0) {
-			strcpy(token2->token_string, token_string); //copy source_buffer into tmp_buffer
+			strcpy(token2->token_string, token_string); /*copy source_buffer into tmp_buffer */
 			token2->code = (TokenCode) i;
 
 			break;
@@ -189,7 +189,7 @@ static BOOLEAN is_reserved_word(char token_string[], Token *token) {
 	 Examine the reserved word table and determine if the function input is a reserved word.
 	 */
 
-	size_t i; // row counter       9
+	size_t i; /* row counter       9 */
 
 	char tmp[MAX_SOURCE_LINE_LENGTH];
 	strToUpper(token_string, tmp);
@@ -206,7 +206,7 @@ static BOOLEAN is_reserved_word(char token_string[], Token *token) {
 
 	}
 
-	token->code = IDENTIFIER; // if not a reserve word then identifier
+	token->code = IDENTIFIER; /*/ if not a reserve word then identifier */
 	return FALSE;
 
 }
@@ -217,10 +217,10 @@ static void strToUpper(char source[], char target[]) {
 
 	for (i = 0; i < MAX_TOKEN_STRING_LENGTH && source[i] != '\0'; ++i) {
 		target[i] = toupper(source[i]);
-	} // end for
+	}
 	target[i] = '\0';
 
-	//return tmp;
+
 
 }
 
@@ -239,7 +239,7 @@ static Token *get_word(char token_string[], Token *token2) {
 	token2->nextptr = NULL;
 	token2->type = STRING_LIT;
 
-	strcpy(token2->token_string, token_string); //copy source_buffer into tmp_buffer
+	strcpy(token2->token_string, token_string);
 
 	/*
 	 >> Write some code to Check if the word is a reserved word.  if it is not a reserved word its an identifier
@@ -260,7 +260,7 @@ static Token *get_string(char token_string[], Token *token2) {
 	token2->type = STRING_LIT;
 	token2->nextptr = NULL;
 
-	strcpy(token2->token_string, token_string); //copy source_buffer into tmp_buffer
+	strcpy(token2->token_string, token_string);
 
 	return token2;
 }
@@ -279,8 +279,8 @@ static char get_char(char token_string[]) {
 	 */
 
 	static char source_buffer[MAX_SOURCE_LINE_LENGTH];
-	static size_t i = 0; // counter
-	size_t nextIndex = 0; // counter
+	static size_t i = 0;
+	size_t nextIndex = 0;
 
 	char ch;
 
@@ -296,9 +296,9 @@ static char get_char(char token_string[]) {
 
 		else {
 
-			i = skip_blanks(source_buffer, i);  // skip blank
+			i = skip_blanks(source_buffer, i);
 
-			// If it sees a Pascal Comment it skips the comment (a pascal comment is anything between ‘{‘ and ‘}’).
+
 			i = skip_comment(source_buffer, i);
 
 			ch = source_buffer[i];
@@ -328,7 +328,7 @@ static size_t getNextTokenFirstIndexForNumber(char source_buffer[],
 
 	for (i = index; i < MAX_SOURCE_LINE_LENGTH; ++i) {
 
-		//skip until blank is found
+		/*/skip until blank is found */
 		if (isblank(source_buffer[i])) {
 
 			i = skipToNonBlank_FromBlank(source_buffer, i);
@@ -336,7 +336,7 @@ static size_t getNextTokenFirstIndexForNumber(char source_buffer[],
 
 		}
 
-		//if is a letter and not e
+		/*/if is a letter and not e */
 		if (isalpha(source_buffer[i])) {
 
 			tmp2 = toupper(source_buffer[i]);
@@ -347,7 +347,7 @@ static size_t getNextTokenFirstIndexForNumber(char source_buffer[],
 
 		}
 
-		//if not leter but one of math operation
+		/*/if not leter but one of math operation */
 		if (!isalpha(source_buffer[i])) {
 
 			if (strcmp(&source_buffer[i], &end)) {
@@ -367,28 +367,28 @@ static size_t getCurTokenLastIndexForNumber(char source_buffer[],
 
 	size_t i;
 
-	// skip to next non blank
+	/*/ skip to next non blank */
 	for (i = currIndex; i < MAX_SOURCE_LINE_LENGTH; ++i) {
 
-		// return if it is a blank
+		/*/ return if it is a blank*/
 		if (isblank(source_buffer[i])) {
 			currIndex = i - 1;
 			break;
 		}
 
-		//return if end of line
+		/*/return if end of line */
 		if (source_buffer[i] == ';') {
 			currIndex = i - 1;
 			break;
 		}
 
-		//return if ':'
+		/*/return if ':' */
 		if (source_buffer[i] == ':') {
 			currIndex = i - 1;
 			break;
 		}
 
-		//return if ','
+		/*/return if ',' */
 		if (source_buffer[i] == ',') {
 			currIndex = i - 1;
 			break;
@@ -409,12 +409,12 @@ static size_t getIndexBySymbol(char source_buffer[], size_t index, char sym) {
 
 	size_t i;
 
-	// skip to next non blank
+	/*/ skip to next non blank */
 	for (i = index + 1; i < MAX_SOURCE_LINE_LENGTH; ++i) {
-		// skip until non blank is found
+		/*/ skip until non blank is found */
 		if ((source_buffer[i - 1] != '\\') && (source_buffer[i] == sym)) {
 			return i;
-			//break;
+
 		}
 
 	}
@@ -430,7 +430,7 @@ static size_t getNextTokenFirstIndexForString(char source_buffer[],
 
 	for (i = index + 1; i < MAX_SOURCE_LINE_LENGTH; ++i) {
 
-		//skip until blank is found
+		/*/skip until blank is found */
 		if (isblank(source_buffer[i])) {
 
 			i = skipToNonBlank_FromBlank(source_buffer, i);
@@ -440,7 +440,7 @@ static size_t getNextTokenFirstIndexForString(char source_buffer[],
 
 		if (!isblank(source_buffer[i])) {
 
-			//i = skipToNonBlank_FromBlank(source_buffer, i);
+
 			return i;
 
 		}
@@ -458,7 +458,7 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 
 	size_t k, nextIndex;
 
-	// if string
+	/*/ if string */
 	if (source_buffer[j] == '\'') {
 
 		lastIndex = getIndexBySymbol(source_buffer, j, '\'');
@@ -474,7 +474,7 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 		nextIndex = getNextTokenFirstIndexForString(source_buffer, lastIndex);
 
 	} else
-	//if it is a number
+	/*if it is a number */
 	if (isdigit(source_buffer[j])) {
 		lastIndex = getCurTokenLastIndexForNumber(source_buffer, j);
 
@@ -491,20 +491,20 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 
 	} else
 
-	//if not alpha - that means special character
-	if ((isalpha(toupper(source_buffer[j])) == 0)) {	//1=true
+	/*if not alpha - that means special character */
+	if ((isalpha(toupper(source_buffer[j])) == 0)) {	/*1=true */
 
 		token_string[n] = source_buffer[j];
 		token_string[++n] = '\0';
-		//return token_string;
+		/*return token_string; */
 
 		nextIndex = skipToNonBank_FromNonBlank(source_buffer, j);
 
-	} else {	// is alpha
+	} else {
 
 		k = skipToBlank_fromNonBlank(source_buffer, j);
 
-		// skip to next blank
+		/* skip to next blank */
 		for (i = j; i < k; ++i) {
 
 			token_string[n] = source_buffer[i];
@@ -513,7 +513,7 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 		}
 		token_string[n] = '\0';
 
-		nextIndex = skipToBlank_fromNonBlank(source_buffer, j);  //``
+		nextIndex = skipToBlank_fromNonBlank(source_buffer, j);  /*`` */
 
 		nextIndex = skipToNonBlank_FromBlank(source_buffer, nextIndex);
 
@@ -527,13 +527,13 @@ static size_t skipToNonBlank_FromBlank(char source_buffer[], size_t j) {
 
 	size_t i;
 
-	// skip to next non blank
+	/* skip to next non blank */
 	for (i = j; i < MAX_SOURCE_LINE_LENGTH; ++i) {
-		// skip until non blank is found
+		/* skip until non blank is found */
 		if (isblank(source_buffer[i]) == 0) {
-			//return &source_buffer[i]; // if not blank then return the address of non-blank
+
 			return i;
-			//break;
+			/*break; */
 		}
 
 	}
@@ -545,16 +545,16 @@ static size_t skipToNonBlank_FromBlank(char source_buffer[], size_t j) {
 static size_t skipToBlank_fromNonBlank(char source_buffer[], size_t j) {
 
 	size_t i;
-	// skip to next blank
+	/* skip to next blank */
 	for (i = j; i < MAX_SOURCE_LINE_LENGTH; ++i) {
-		//return if not a letter
+		/*return if not a letter */
 		if (isalpha(source_buffer[i]) == 0) {
 
 			return i;
 
 		}
 
-		//skip until blank is found
+		/*skip until blank is found */
 		if (isblank(source_buffer[i]) != 0) {
 
 			return i;
@@ -571,9 +571,9 @@ static size_t skipToNonBank_FromNonBlank(char source_buffer[], size_t currIndex)
 
 	size_t i;
 
-	// skip to next non blank
+	/* skip to next non blank */
 	for (i = currIndex + 1; i < MAX_SOURCE_LINE_LENGTH; ++i) {
-		// skip until non blank is found
+		/* skip until non blank is found */
 		if (isblank(source_buffer[i]) == 0) {
 			currIndex = i;
 			break;
@@ -596,7 +596,7 @@ static size_t skip_blanks(char source_buffer[], size_t j) {
 	for (i = j; i < MAX_SOURCE_LINE_LENGTH; ++i) {
 
 		if (isblank(source_buffer[i]) == 0) {
-			return i; // if not blank then return the address of non-blank
+			return i; /* if not blank then return the address of non-blank */
 		}
 
 	}
@@ -635,13 +635,13 @@ static char * downshift_word(char token_string[]) {
 	 Make all of the characters in the incoming word lower case.
 	 */
 
-	size_t i; // counter
+	size_t i; /* counter */
 	char s1[MAX_TOKEN_STRING_LENGTH];
 
-	// extract the source file name
+	/* extract the source file name */
 	for (i = 0; i < MAX_TOKEN_STRING_LENGTH && token_string[i] != '\0'; ++i) {
 		s1[i] = tolower(token_string[i]);
-	} // end for
+	} /* end for */
 	s1[i] = '\0';
 
 	strcpy(token_string, s1);
@@ -653,14 +653,14 @@ static Token *get_number(char token_string[], Token * token2) {
 	/*
 	 Write some code to Extract the number and convert it to a literal number.
 	 */
-	char *stringPtr; // create char pointer
+	char *stringPtr; /* create char pointer */
 	strtod(token_string, &stringPtr);
 
 	token2->code = NUMBER;
 	token2->type = INTEGER_LIT;
 	token2->nextptr = NULL;
 
-	strcpy(token2->token_string, token_string); //copy source_buffer into tmp_buffer
+	strcpy(token2->token_string, token_string); /*copy source_buffer into tmp_buffer */
 	return token2;
 
 }

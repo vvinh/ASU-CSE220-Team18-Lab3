@@ -110,11 +110,11 @@ typedef enum {
 
 typedef struct token {
 
-	LiteralType type;  		//INTEGER_LIT, REAL_LIT, STRING_LIT,
-	char token_string[MAX_TOKEN_STRING_LENGTH]; 	//literal value
-	TokenCode code; 		// IDENTIFIER,NUMBER,STRING,etc
+	LiteralType type;  		/*/INTEGER_LIT, REAL_LIT, STRING_LIT,*/
+	char token_string[MAX_TOKEN_STRING_LENGTH]; 	/*/literal value*/
+	TokenCode code; 		/*/ IDENTIFIER,NUMBER,STRING,etc*/
 
-	struct token *nextptr;  			// link to another token
+	struct token *nextptr;  			/*/ link to another token*/
 } Token;
 
 #endif

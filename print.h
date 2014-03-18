@@ -17,3 +17,4 @@ void print_token(Token *token);
 void init_scanner2(char source_name[], char date[]);
 
 #endif
+

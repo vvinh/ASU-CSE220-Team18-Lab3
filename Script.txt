@@ -1,0 +1,3 @@
+./lab3 NEWTON.PAS > ActualOutputASU.txt
+
+./lab3 NEWTON.PAS
