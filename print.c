@@ -64,25 +64,25 @@ void print_token(Token *token) {
 
 
 
-	if (token->type == INTEGER_LIT) {
+	if (token->type == INTEGER_LIT) //If the token being scanned is an int, do this{
 
 		sprintf(print_buffer, ">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
 				token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else if (token->type == REAL_LIT) {
+	} else if (token->type == REAL_LIT) //If the token being scanned is a real literal, do this {
 
 
 		sprintf(print_buffer, ">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
 				token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else if (token->code == NO_TOKEN) {
+	} else if (token->code == NO_TOKEN) //If the token being scanned is empty, do this {
 
 		sprintf(print_buffer, "%s\t    %s\n", "", token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else {
+	} else //Else, do this {
 
 		sprintf(print_buffer, ">> %s\t    %s\n",
 				SYMBOL_STRINGS[token->code], token->token_string);
