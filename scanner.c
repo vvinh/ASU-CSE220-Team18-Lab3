@@ -125,10 +125,10 @@ Token * get_token() {
 	/*/or else it must have a special so it can get_special(). */
 
 	/*/ isalpha does not work with lower case */
-	if ((isalpha(toupper(ch)) == 1)) {	/*1=true */
+	if (isalpha(ch)!=0) {
 
 		token2 = get_word(token_string, token2);  /*/(if it is a LETTER) */
-	} else if (isdigit(ch) == 1) {
+	} else if (isdigit(ch) ) {
 
 		token2 = get_number(token_string, token2); /*/(if it is a DIGIT) */
 
