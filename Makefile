@@ -3,7 +3,7 @@
 # FILE: Makefile
 #
 # DESCRIPTION
-# Make file for the Vigenere encryption/decryption project.
+# Make file for the lab3 project.
 #
 # AUTHOR INFORMATION
 # Kevin R. Burger [KRB]
@@ -20,7 +20,7 @@
 # MODIFICATION HISTORY:
 # --------------------------------------------------------------------------------------------------------------
 # 24 Jan 2012 [KRB] Initial revision.
-# 10 Mar 2014 [Vivian Vinh] modified and reuse professor Kevin Berger's script from exam1 extra credit.
+# 10 Mar 2014 [Vivian Vinh] modified and re-use professor Kevin Berger's script from exam1 extra credit.
 #***************************************************************************************************************
 
 # -ansi   : Compile the code assuming it conforms to the ANSI C standard.
@@ -32,7 +32,7 @@ CFLAGS = -ansi -c -g -O0 -Wall
 
 # If you add or remove .c files to or from the projet, then update this macro accordingly.
 SOURCES = main.c \
-          print.c       \
+          print.c \
           scanner.c
 
 # Creates a macro named OBJECTS from SOURCES where each occurrence of .c in SOURCES is replaced by a .o in
@@ -40,9 +40,9 @@ SOURCES = main.c \
 OBJECTS = $(SOURCES:.c=.o)
 
 # This is the target of the makefile and also the name of the binary.
-TARGET = vigenere
+TARGET = lab3
 
-# This rule states that the TARGET (vigenere) depends on the OBJECTS, i.e., the binary depends on the .o
+# This rule states that the TARGET (lab3) depends on the OBJECTS, i.e., the binary depends on the .o
 # object code files. Therefore, to build binary, make will check to make sure all of the object code files
 # are up-to-date. If any of them are newer than the target, then that means one of the .c files was compiled
 # after the last time the binary was built, and therefore, the binary needs to be rebuilt. The gcc command
@@ -75,7 +75,7 @@ include $(SOURCES:.c=.d)
 # that is encountered in the make file is the default target and make will do what it can to build it. If you
 # wish to have additional targets, you can define the target as a phony target. Now, typing "make clean" will
 # cause make to build the "clean" target rather than the default target. The "clean" target cleans the project
-# directory by deleting all of the .o files, all of the .d files, and the vigenere binary. Thus, it sets the
+# directory by deleting all of the .o files, all of the .d files, and the lab3 binary. Thus, it sets the
 # directory back to containing just .c and .h files and the make file. After doing "make clean", a "make"
 # command will cause the entire project to be rebuilt by recompiling every .c source code file.
 .PHONY: clean
