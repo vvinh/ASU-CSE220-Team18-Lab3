@@ -55,7 +55,7 @@ static void print_page_header(char source_name[], char date[]) {
 
 void print_token(Token *token) {
 
-	/*/`Missing code goes here */
+	/*Missing code goes here */
 
 	char print_buffer[MAX_SOURCE_LINE_LENGTH + 9];
 

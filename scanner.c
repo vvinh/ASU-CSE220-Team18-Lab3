@@ -399,6 +399,12 @@ static size_t getCurTokenLastIndexForNumber(char source_buffer[],
 			break;
 		}
 
+		if (source_buffer[i] == '*') {
+			currIndex = i - 1;
+			break;
+		}
+
+
 	}
 
 	return currIndex;
@@ -458,6 +464,22 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 
 	size_t k, nextIndex;
 
+	if (source_buffer[j] == ':') {
+
+			lastIndex = getIndexBySymbol(source_buffer, j, '=');
+
+			for (i = j ; i <= lastIndex; ++i) {
+
+				token_string[n] = source_buffer[i];
+				n++;
+
+			}
+			token_string[n] = '\0';
+
+			nextIndex = getNextTokenFirstIndexForString(source_buffer, lastIndex);
+
+		} else
+
 	/*/ if string */
 	if (source_buffer[j] == '\'') {
 
@@ -513,7 +535,7 @@ static size_t buildToken(char source_buffer[], char token_string[], size_t j) {
 		}
 		token_string[n] = '\0';
 
-		nextIndex = skipToBlank_fromNonBlank(source_buffer, j);  /*`` */
+		nextIndex = skipToBlank_fromNonBlank(source_buffer, j);
 
 		nextIndex = skipToNonBlank_FromBlank(source_buffer, nextIndex);
 
@@ -560,6 +582,13 @@ static size_t skipToBlank_fromNonBlank(char source_buffer[], size_t j) {
 			return i;
 
 		}
+
+		if (source_buffer[i] == '\n') {
+
+					return i;
+
+				}
+
 
 	}
 

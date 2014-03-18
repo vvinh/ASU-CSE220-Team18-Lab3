@@ -1,4 +1,4 @@
-Page    1  NEWTON.PAS  Tue Mar 18 05:23:02 2014
+Page    1  NEWTON.PAS  Tue Mar 18 08:41:43 2014
 
 
    1: PROGRAM newton (input, output);
@@ -51,7 +51,7 @@
 >> <IDENTIFIER>	    read
 >> (	    (
 >> <IDENTIFIER>	    number
-Page    2  NEWTON.PAS  Tue Mar 18 05:23:02 2014
+Page    2  NEWTON.PAS  Tue Mar 18 08:41:43 2014
 
 
 >> )	    )
@@ -104,11 +104,10 @@
 >> BEGIN	    begin
   22: 	    sqroot := sqrt(number);
 >> <IDENTIFIER>	    sqroot
-Page    3  NEWTON.PAS  Tue Mar 18 05:23:02 2014
+Page    3  NEWTON.PAS  Tue Mar 18 08:41:43 2014
 
 
->> :	    :
->> =	    =
+>> :=	    :=
 >> <IDENTIFIER>	    sqrt
 >> (	    (
 >> <IDENTIFIER>	    number
@@ -137,16 +136,14 @@
 	     
   26: 	    root := 1;
 >> <IDENTIFIER>	    root
->> :	    :
->> =	    =
+>> :=	    :=
 >> <NUMBER>	    1
 >> ;	    ;
   27: 	    REPEAT
 >> REPEAT	    repeat
   28: 		root := (number/root + root)/2;
 >> <IDENTIFIER>	    root
->> :	    :
->> =	    =
+>> :=	    :=
 >> (	    (
 >> <IDENTIFIER>	    number
 >> /	    /
@@ -157,12 +154,12 @@
 >> /	    /
 >> <NUMBER>	    2
 >> ;	    ;
-Page    4  NEWTON.PAS  Tue Mar 18 05:23:02 2014
-
-
   29: 		writeln(root:24:6,
 >> <IDENTIFIER>	    writeln
 >> (	    (
+Page    4  NEWTON.PAS  Tue Mar 18 08:41:43 2014
+
+
 >> <IDENTIFIER>	    root
 >> :	    :
 >> <NUMBER>	    24
@@ -170,7 +167,11 @@
 >> <NUMBER>	    6
 >> ,	    ,
   30: 			100*abs(root - sqroot)/sqroot:12:2,
->> <NUMBER>	    100*abs(root
+>> <NUMBER>	    100
+>> *	    *
+>> <IDENTIFIER>	    abs
+>> (	    (
+>> <IDENTIFIER>	    root
 >> -	    -
 >> <IDENTIFIER>	    sqroot
 >> )	    )
@@ -210,10 +211,10 @@
 
 >> )	    )
 >> -	    -
+Page    5  NEWTON.PAS  Tue Mar 18 08:41:43 2014
+
+
 >> <NUMBER>	    1
-Page    5  NEWTON.PAS  Tue Mar 18 05:23:02 2014
-
-
 >> )	    )
 >> <	    <
 >> <IDENTIFIER>	    epsilon
