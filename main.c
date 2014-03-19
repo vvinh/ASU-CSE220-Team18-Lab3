@@ -19,7 +19,7 @@ void add_token_to_list(Token *list, Token *new_token);
 
 int main(int argc, const char * argv[]) {
 	Token *token;
-	Token *token_list; /*This needs to be implemented as a linked list in scanner.h.  */
+	Token *token_list; 
 	char source_name[MAX_FILE_NAME_LENGTH];
 	char date[DATE_STRING_LENGTH];
 
@@ -32,14 +32,14 @@ int main(int argc, const char * argv[]) {
 		token = get_token();
 		add_token_to_list(token_list, token);
 		print_token(token);
-	} while (token->token_string[0] != '.'); // What is the sentinal value that ends this loop? */
+	} while (token->token_string[0] != '.'); 
 
 	quit_scanner(source_file, token_list);
 	return 0;
 }
 
 void add_token_to_list(Token *list, Token *new_token) {
-	/* Add new_token to the list knowing that list is a linked list. */
+	
 
 	if (list->nextptr == NULL) {
 		list->nextptr = new_token;
@@ -52,7 +52,7 @@ void add_token_to_list(Token *list, Token *new_token) {
 }
 
 void quit_scanner(FILE *src_file, Token *list) {
-	/*write code to free all of the memory for the token list */
+	
 	fclose(src_file);
 	Token *delPtr;
 
@@ -60,7 +60,7 @@ void quit_scanner(FILE *src_file, Token *list) {
 		delPtr = list;
 		list = list->nextptr;
 		free(delPtr);
-	} /* end while */
+	} 
 }
 
 FILE *init_lister(const char *name, char source_file_name[], char dte[]) {
