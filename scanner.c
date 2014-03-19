@@ -615,17 +615,14 @@ static size_t skipToNonBank_FromNonBlank(char source_buffer[], size_t currIndex)
 }
 
 static size_t skip_blanks(char source_buffer[], size_t j) {
-	/*
-	 Write some code to skip past the blanks in the program and return a pointer
-	 to the first non blank character
-	 */
+	
 
 	size_t i;
 
 	for (i = j; i < MAX_SOURCE_LINE_LENGTH; ++i) {
 
 		if (isblank(source_buffer[i]) == 0) {
-			return i; /* if not blank then return the address of non-blank */
+			return i; 
 		}
 
 	}
@@ -634,10 +631,7 @@ static size_t skip_blanks(char source_buffer[], size_t j) {
 }
 
 static size_t skip_comment(char source_buffer[], size_t j) {
-	/*
-	 Write some code to skip past the comments in the program and return a pointer
-	 to the first non blank character.  Watch out for the EOF character.
-	 */
+	
 
 	size_t i;
 
@@ -660,17 +654,15 @@ static size_t skip_comment(char source_buffer[], size_t j) {
 }
 
 static char * downshift_word(char token_string[]) {
-	/*
-	 Make all of the characters in the incoming word lower case.
-	 */
+	
 
-	size_t i; /* counter */
+	size_t i; 
 	char s1[MAX_TOKEN_STRING_LENGTH];
 
-	/* extract the source file name */
+	
 	for (i = 0; i < MAX_TOKEN_STRING_LENGTH && token_string[i] != '\0'; ++i) {
 		s1[i] = tolower(token_string[i]);
-	} /* end for */
+	} 
 	s1[i] = '\0';
 
 	strcpy(token_string, s1);
@@ -679,17 +671,15 @@ static char * downshift_word(char token_string[]) {
 }
 
 static Token *get_number(char token_string[], Token * token2) {
-	/*
-	 Write some code to Extract the number and convert it to a literal number.
-	 */
-	char *stringPtr; /* create char pointer */
+	
+	char *stringPtr; 
 	strtod(token_string, &stringPtr);
 
 	token2->code = NUMBER;
 	token2->type = INTEGER_LIT;
 	token2->nextptr = NULL;
 
-	strcpy(token2->token_string, token_string); /*copy source_buffer into tmp_buffer */
+	strcpy(token2->token_string, token_string); 
 	return token2;
 
 }
