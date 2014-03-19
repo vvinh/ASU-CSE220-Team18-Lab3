@@ -40,6 +40,10 @@ void print_line(char line[], char source_name_to_print[], char date_to_print[]) 
 		*save_chp = '\0';
 	}
 	printf("%s", line);
+	if(line[3] == '1' || line[3] == '9' || line[3] == '2' || line[3] == '3' || line[3] == '4' 
+		|| line[3] == '5' || line[3] == '6' || line[3] == '7' || line[3] == '8' ){
+		printf("\n");
+	}
 	fflush(stdout);
 	if (save_chp) {
 		*save_chp = save_ch;
@@ -59,30 +63,25 @@ void print_token(Token *token) {
 
 	char print_buffer[MAX_SOURCE_LINE_LENGTH + 9];
 
-
-
-
-
-
-	if (token->type == INTEGER_LIT) //If the token being scanned is an int, do this{
+	if (token->type == INTEGER_LIT){ 
 
 		sprintf(print_buffer, ">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
 				token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else if (token->type == REAL_LIT) //If the token being scanned is a real literal, do this {
+	} else if (token->type == REAL_LIT){ 
 
 
 		sprintf(print_buffer, ">> %s\t    %s\n", SYMBOL_STRINGS[token->code],
 				token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else if (token->code == NO_TOKEN) //If the token being scanned is empty, do this {
+	} else if (token->code == NO_TOKEN){
 
 		sprintf(print_buffer, "%s\t    %s\n", "", token->token_string);
 		print_line(print_buffer, src_name, todays_date);
 
-	} else //Else, do this {
+	} else{ 
 
 		sprintf(print_buffer, ">> %s\t    %s\n",
 				SYMBOL_STRINGS[token->code], token->token_string);
