@@ -29,11 +29,10 @@ int main(int argc, const char * argv[]) {
 	token_list = malloc(sizeof(Token));
 	token_list->nextptr = NULL;
 	do {
-
 		token = get_token();
 		add_token_to_list(token_list, token);
 		print_token(token);
-	} while (token->token_string[0] != '.'); /*??? What is the sentinal value that ends this loop? */
+	} while (token->token_string[0] != '.'); // What is the sentinal value that ends this loop? */
 
 	quit_scanner(source_file, token_list);
 	return 0;
@@ -43,13 +42,11 @@ void add_token_to_list(Token *list, Token *new_token) {
 	/* Add new_token to the list knowing that list is a linked list. */
 
 	if (list->nextptr == NULL) {
-
 		list->nextptr = new_token;
 	} else {
 
 		new_token->nextptr = list->nextptr;
 		list->nextptr = new_token;
-
 	}
 
 }
