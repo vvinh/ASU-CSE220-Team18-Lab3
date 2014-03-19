@@ -11,7 +11,7 @@
 
 static char src_name[MAX_FILE_NAME_LENGTH];
 static char todays_date[DATE_STRING_LENGTH];
-
+//tabs on the symbols which are too stort to reach an extra tab for formatting purposes
 const char* const SYMBOL_STRINGS[] = { "<no token>", "<IDENTIFIER>", "<NUMBER>",
 		"<STRING>", "^\t", "*\t", "(\t", ")\t", "-\t", "+\t", "=\t", "[\t", "]\t", ":\t", ";\t", "<\t",
 		">\t", ",\t", ".\t", "/\t", ":=\t", "<=\t", ">=\t", "<>\t", "..\t", "<END OF FILE>",
@@ -27,11 +27,11 @@ void print_line(char line[], char source_name_to_print[], char date_to_print[]) 
 	char save_ch;
 	char *save_chp = NULL;
 	static int line_count = MAX_LINES_PER_PAGE;
-
+	//reset line count on new page
 	if (++line_count > MAX_LINES_PER_PAGE) {
 		print_page_header(source_name_to_print, date_to_print);
 		line_count = 1;
-	}
+	}//make new line when line gets to max length
 	if (strlen(line) > MAX_PRINT_LINE_LENGTH) {
 		save_chp = &line[MAX_PRINT_LINE_LENGTH];
 	}
@@ -40,6 +40,7 @@ void print_line(char line[], char source_name_to_print[], char date_to_print[]) 
 		*save_chp = '\0';
 	}
 	printf("%s", line);
+	// adds a space after every line that starts with a number
 	if(line[3] == '1' || line[3] == '9' || line[3] == '2' || line[3] == '3' || line[3] == '4' 
 		|| line[3] == '5' || line[3] == '6' || line[3] == '7' || line[3] == '8' ){
 		printf("\n");
@@ -52,7 +53,7 @@ void print_line(char line[], char source_name_to_print[], char date_to_print[]) 
 
 static void print_page_header(char source_name[], char date[]) {
 	static int page_number = 0;
-
+	// formats page header
 	putchar(FORM_FEED_CHAR);
 	printf("Page    %d  %s  %s\n\n", ++page_number, source_name, date);
 }
