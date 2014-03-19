@@ -57,7 +57,7 @@ static void print_page_header(char source_name[], char date[]) {
 	putchar(FORM_FEED_CHAR);
 	printf("Page    %d  %s  %s\n\n", ++page_number, source_name, date);
 }
-// This function determines what token is in the scanner and formats it accordingly
+
 void print_token(Token *token) {
 
 	/*Missing code goes here */
